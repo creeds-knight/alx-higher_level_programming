@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ -z "$PYCODE" ]; then
+	echo "Error: PYCODE not set"
+	exit 1
+fi
+temp_file=$(mktemp)
+echo "$PYCODE" > "$temp_file"
+python3 "$temp_file"
+rm "$temp_file"
