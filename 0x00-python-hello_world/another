@@ -1,5 +1,0 @@
-#!/bin/bash
-touch pp.py
-echo $PYCODE > pp.py
-python3 pp.py
-rm -r pp.py
