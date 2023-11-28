@@ -13,5 +13,6 @@ else:
     new = number * -1
     y = (new % 10) * -1
     if (new % 10 == 0):
-        print(f"Last digit of {number} is {new} and is zero")
-    print(f"Last digit of {number} is {y} and is less than 6 and not 0")
+        print(f"Last digit of {number} is {new} and is 0")
+    else:
+        print(f"Last digit of {number} is {y} and is less than 6 and not 0")
