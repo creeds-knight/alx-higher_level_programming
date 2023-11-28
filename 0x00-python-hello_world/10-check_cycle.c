@@ -6,13 +6,14 @@
  */
 int check_cycle(listint_t *list)
 {
-	listint_t *checked_node = list->next;
+	listint_t *checked_node = list;
 	listint_t *tmp = list;
 
-	while (tmp->next != NULL)
+	while (tmp !=NULL && tmp->next != NULL)
 	{
-		tmp = tmp->next;
-		if (tmp->next == checked_node)
+		tmp = tmp->next->next;
+		checked_node = checked_node->next;
+		if (tmp == checked_node)
 			return (1);
 	}
 	return (0);
