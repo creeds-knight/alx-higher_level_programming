@@ -12,4 +12,4 @@ if number > 0:
 else:
     new = number * -1
     y = (new % 10) * -1
-    print(f"Last digit of {number} is {y}  and is less than 6 and not 0")
+    print(f"Last digit of {number} is {y} and is less than 6 and not 0")
