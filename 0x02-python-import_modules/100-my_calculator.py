@@ -14,9 +14,9 @@ if __name__ == "__main__":
         elif oper == '-':
             print("{} - {} = {}".format(a, b, sub(a, b)))
         elif oper == '*':
-            print("{} - {} = {}".format(a, b, mul(a, b)))
+            print("{} * {} = {}".format(a, b, mul(a, b)))
         elif oper == '/':
-            print("{} - {} = {}".format(a, b, div(a, b)))
+            print("{} / {} = {}".format(a, b, div(a, b)))
         else:
             print("Unknown operator. Available operators: +, -, * and /")
             sys.exit(1)
