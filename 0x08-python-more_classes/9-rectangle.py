@@ -60,6 +60,9 @@ class Rectangle:
                 total += '\n'
         return total
 
+    def __repr__(self):
+        return "Rectangle({:d}, {:d})".format(self.__width, self.__height)
+
     def __del__(self):
         print("Bye rectangle...")
         Rectangle.number_of_instances -= 1
