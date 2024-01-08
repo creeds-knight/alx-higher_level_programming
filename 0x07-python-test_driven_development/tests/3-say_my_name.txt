@@ -1,0 +1,31 @@
+A function to print out the first name and last name
+
+importing the function
+>>> say_my_name = __import__('3-say_my_name').say_my_name
+
+testing normal conditions
+>>> say_my_name("apedo", "arthur")
+My name is apedo arthur
+
+testing with integer
+>>> say_my_name("apedo", 12)
+Traceback (most recent call last):
+	...
+TypeError: last_name must be a string
+
+testing with one argument
+say_my_name("apedo")
+My name is apedo
+
+testing with no argument
+>>> say_my_name()
+Traceback (most recent call last):
+	...
+TypeError: say_my_name() missing 1 required positional argument: 'first_name'
+
+Testing with list
+>>> say_my_name(["john"], "peter")
+Traceback (most recent call last):
+	...
+TypeError: first_name must be a string
+

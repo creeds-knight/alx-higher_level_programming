@@ -1,0 +1,44 @@
+A function to print a square
+
+importing function
+>>> print_square = __import__('4-print_square').print_square
+
+test on integer
+>>> print_square(4)
+####
+####
+####
+####
+
+test on float
+>>> print_square(2.5)
+Traceback (most recent call last):
+	...
+TypeError: size must be an integer
+
+test on zero(0)
+>>> print_square(0)
+
+test on negative number
+>>> print_square(-1)
+Traceback (most recent call last):
+	...
+ValueError: size must be >=0
+
+test with no arguments
+>>> print_square()
+Traceback (most recent call last):
+	...
+TypeError: print_square() missing 1 required positional argument: 'size'
+
+with infinity float
+>>> print_square(float('inf'))
+Traceback (most recent call last):
+	...
+TypeError: size must be an integer
+
+with nan values
+>>> print_square(float('nan'))
+Traceback (most recent call last):
+	...
+TypeError: size must be an integer
