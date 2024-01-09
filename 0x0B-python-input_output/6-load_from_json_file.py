@@ -3,6 +3,8 @@
 
 
 import json
+
+
 def load_from_json_file(filename):
     """ A function to load json objects from files"""
     with open(filename, 'r') as f:
