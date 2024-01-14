@@ -10,7 +10,7 @@ import os
 
 class TestBase(unittest.TestCase):
     """ Test class for base"""
-    def setup(self):
+    def setUp(self):
         """ Sets all back to 0 instances of base"""
         Base.reset()
 
@@ -26,7 +26,9 @@ class TestBase(unittest.TestCase):
         case5 = Base()
         self.assertEqual(case5.id, 4)
 
-    if __name__ == '__main__':
-        unittest.main()
-        Base.reset()
+    def test_to_json_string(self):
+        """ Testing conversion of a dictionary to json string"""
+        lst_dct = [{'id':3, 'width': 6, 'height': 8}, {'id': 98, 'size': 2}]
+        expected = '[{"id": 3, "width": 6, "height": 8}, {"id": 98, "size": 2}]'
+        self.assertEqual(Base.to_json_string(lst_dct), expected)
 

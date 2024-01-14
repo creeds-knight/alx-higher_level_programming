@@ -29,20 +29,18 @@ class TestRectangle(unittest.TestCase):
 
     def test_validation(self):
         """ testing validation rules"""
-
         with self.assertRaises(TypeError):
             r4 = Rectangle('a', 2, 3, 5)
         with self.assertRaises(TypeError):
             r4 = Rectangle(1, '2', 3, 5)
         with self.assertRaises(TypeError):
-            r4 = Rectangle(1, 2,'3', 5)
+            r4 = Rectangle(1, 2, '3', 5)
         with self.assertRaises(TypeError):
             r4 = Rectangle(1, 2, 3, '5')
-
         with self.assertRaises(ValueError):
             r4 = Rectangle(-1, 2, 3, 5)
         with self.assertRaises(ValueError):
-            r4 = Rectangle(1,-2, 3, 5)
+            r4 = Rectangle(1, -2, 3, 5)
         with self.assertRaises(ValueError):
             r4 = Rectangle(0, 2, 3, 5)
         with self.assertRaises(ValueError):
@@ -71,7 +69,9 @@ class TestRectangle(unittest.TestCase):
     def test_str(self):
         """ Testing the string method"""
         r9 = Rectangle(4, 6, 2, 1, 12)
-        expected = f"[Rectangle] ({r9.id}) {r9.x}/{r9.y} - {r9.width}/{r9.height}"
+        w = r9.width
+        h = r9.height
+        expected = f"[Rectangle] ({r9.id}) {r9.x}/{r9.y} - {w}/{h}"
         self.assertEqual(str(r9), expected)
 
     def test_update(self):
@@ -86,3 +86,9 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r11.x, 4)
         r12 = r11.update(89, 2, 3, 4, 5)
         self.assertEqual(r11.y, 5)
+
+    def test_to_dictionary(self):
+        """Testing the to_dictionary method"""
+        r13 = Rectangle(2, 4, 1, 3, 42)
+        expected_dict = {'id': 42, 'width': 2, 'height': 4, 'x': 1, 'y': 3}
+        self.assertEqual(r13.to_dictionary(), expected_dict)

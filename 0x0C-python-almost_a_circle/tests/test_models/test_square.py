@@ -34,14 +34,14 @@ class TestSquare(unittest.TestCase):
         with self.assertRaises(TypeError):
             s4 = Square(1, '2', 3, 5)
         with self.assertRaises(TypeError):
-            s4 = Square(1, 2,'3', 5)
+            s4 = Square(1, 2, '3', 5)
         with self.assertRaises(TypeError):
             s4 = Square(1, 2, '3')
 
         with self.assertRaises(ValueError):
             s4 = Square(-1, 3, 5)
         with self.assertRaises(ValueError):
-            s4 = Square(-2,-2, 5)
+            s4 = Square(-2, -2, 5)
         with self.assertRaises(ValueError):
             s4 = Square(0, 0, 3, 5)
         with self.assertRaises(ValueError):
@@ -81,5 +81,11 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s11.size, 2)
         s12 = s11.update(89, 2, 3, 4)
         self.assertEqual(s11.x, 3)
+
+    def to_dictionary(self):
+        """Testing the to_dictionary method"""
+        s13 = Square(2, 4, 1, 3, 42)
+        expected_dict = {'id': 42, 'size': 2, 'x': 1, 'y': 3}
+        self.assertEqual(s13.to_dictionary(), expected_dict)
         s12 = s11.update(89, 2, 3, 4)
         self.assertEqual(s11.y, 4)

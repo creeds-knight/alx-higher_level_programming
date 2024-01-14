@@ -82,6 +82,7 @@ class Rectangle(Base):
         w = self.__width
         h = self.__height
         return f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - {w}/{h}"
+
     def update(self, *args, **kwargs):
         """ update attributes with both no-keyword and keyword"""
         attrs = ['id', 'width', 'height', 'x', 'y']
@@ -94,7 +95,6 @@ class Rectangle(Base):
 
     def to_dictionary(self):
         """ A method to return a dictionary rectangle"""
-        dct = {"id" :self.id, "width":self.width, "height": self.height,
-                "x":self.x, "y":self.y}
+        dct = {"id": self.id, "width": self.width, "height": self.height,
+               "x": self.x, "y": self.y}
         return dct
-

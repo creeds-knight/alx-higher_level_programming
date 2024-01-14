@@ -83,10 +83,10 @@ class Base:
         file_name = f"{cls.__name__}.csv"
         shp = cls.__name__
         dct = {
-                'Square':['id', 'size', 'x', 'y'],
-                'Rectangle':['id', 'width', 'height', 'x', 'y']
+                'Square': ['id', 'size', 'x', 'y'],
+                'Rectangle': ['id', 'width', 'height', 'x', 'y']
                 }
-        header = ','.join(dct[shp]) +'\n'
+        header = ','.join(dct[shp]) + '\n'
         rows = [','.join(map(str, [getattr(obj, attr, '') for attr in
                 dct[shp]])) for obj in list_obj] if list_objs else []
 
@@ -98,8 +98,8 @@ class Base:
         file_name = f"{cls.__name__}.csv"
         shp = cls.__name__
         dct = {
-                'Square':['id', 'size', 'x', 'y'],
-                'Rectangle':['id', 'width', 'height', 'x', 'y']
+                'Square': ['id', 'size', 'x', 'y'],
+                'Rectangle': ['id', 'width', 'height', 'x', 'y']
                 }
         objects = []
 
@@ -145,7 +145,7 @@ class Base:
             color = "yellow"
 
             pen.penup()
-            pen.goto(x,y)
+            pen.goto(x, y)
             pen.pendown()
             pen.color(color)
             for i in range(4):
@@ -157,5 +157,3 @@ class Base:
     def reset(cls):
         """instances will be reinitiallised to 0"""
         Base.__nb_objects = 0
-
-

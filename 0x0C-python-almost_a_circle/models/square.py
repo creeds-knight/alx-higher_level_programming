@@ -5,10 +5,10 @@ from models.rectangle import Rectangle
 
 class Square(Rectangle):
     """ A class that defines a square"""
+
     def __init__(self, size, x=0, y=0, id=None):
         """ Initialisation of class square"""
         super().__init__(size, size, x, y, id)
-
 
     def __str__(self):
         """A method to print out a square"""
@@ -18,6 +18,7 @@ class Square(Rectangle):
     def size(self):
         """ Getting the value of size"""
         return self.width
+
     @size.setter
     def size(self, value):
         if not isinstance(value, int):
@@ -29,17 +30,14 @@ class Square(Rectangle):
 
     def update(self, *args, **kwargs):
         """ A method to update square"""
-
         attrs = ['id', 'size', 'x', 'y']
-
         for attr, value in zip(attrs, args):
             setattr(self, attr, value)
-
         for key, value in kwargs.items():
             if key in attrs:
                 setattr(self, key, value)
 
     def to_dictionary(self):
         """ A method for dictionary representation"""
-        dct = {'id':self.id, 'size':self.size, 'x':self.x, 'y':self.y}
+        dct = {'id': self.id, 'size': self.size, 'x': self.x, 'y': self.y}
         return dct
