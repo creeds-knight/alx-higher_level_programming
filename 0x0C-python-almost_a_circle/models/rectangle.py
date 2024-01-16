@@ -70,11 +70,12 @@ class Rectangle(Base):
         char = "#"
         res = ""
         for i in range(self.__y):
-            print()
+            res += '\n'
         for i in range(self.__height):
-            print(' ' * self.__x)
-            print(char * self.__width, end="")
-        print()
+            res += " " * self.__x
+            res += char * self.__width
+            res += '\n'
+        print(res, end="")
 
     def __str__(self):
         """ Print the rectangle"""
