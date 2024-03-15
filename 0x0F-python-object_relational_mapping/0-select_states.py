@@ -17,6 +17,8 @@ def states(username, password, db_name):
     states = cur.fetchall()
     for state in states:
         print(state)
+    cur.close()
+    db.close()
 
 
 if __name__ == "__main__":
