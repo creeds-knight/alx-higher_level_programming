@@ -35,5 +35,6 @@ def start_with_N(username, password, database):
 if __name__ == "__main__":
     if len(sys.argv) != 4:
         print("Usage: <username> <password> <database>")
+        sys.exit(1)
     username, passwd, db = sys.argv[1], sys.argv[2], sys.argv[3]
     start_with_N(username, passwd, db)

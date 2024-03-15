@@ -19,8 +19,9 @@ def state_check(username, password, database, state):
                 passwd=password,
                 db=database)
         cur = db.cursor()
-        cur.execute("SELECT id, name FROM states WHERE name = '{}'\
-                     ORDER BY id".format(state))
+        cur.execute("SELECT id, name FROM states WHERE id IN (SELECT MIN(id)\
+                    FROM states GROUP BY name) AND name = '{}'\
+                    ORDER BY id".format(state))
         res = cur.fetchall()
         for state in res:
             print(state)
@@ -35,4 +36,4 @@ if __name__ == "__main__":
     if len(sys.argv) != 5:
         print("Usage: <username> <password> <database> <state>")
         sys.exit(1)
-    state_check(sys.argv[1], sys.argv[2], sys.argv[3],sys.argv[4])
+    state_check(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
