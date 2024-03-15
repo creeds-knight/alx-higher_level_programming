@@ -19,8 +19,8 @@ def state_check(username, password, database, state):
                 passwd=password,
                 db=database)
         cur = db.cursor()
-        cur.execute("SELECT id, name FROM states WHERE name = %s\
-                     ORDER BY id", (state,))
+        cur.execute("SELECT id, name FROM states WHERE name = '{}'\
+                     ORDER BY id".format(state))
         res = cur.fetchall()
         for state in res:
             print(state)
