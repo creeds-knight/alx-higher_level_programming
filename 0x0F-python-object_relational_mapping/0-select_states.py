@@ -20,7 +20,5 @@ def states(username, password, db_name):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        print("Usage: <username> <password> <database_name>")
     username, passwd, db_name = sys.argv[1], sys.argv[2], sys.argv[3]
     states(username, passwd, db_name)
