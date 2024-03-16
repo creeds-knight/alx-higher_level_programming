@@ -17,9 +17,10 @@ def cities_check(username, password, db_name):
                 db=db_name)
 
         cur = db.cursor()
-        querry = "SELECT * FROM cities ORDER BY iD ASC"
-        rows = cur.execute(querry)
-        for row in rows.fetchall():
+        querry = "SELECT * FROM cities ORDER BY id ASC"
+        cur.execute(querry)
+        rows = cur.fetchall()
+        for row in rows:
             print(row)
     except MySQLdb.Error as e:
         print(f"Error: {e}")
@@ -30,7 +31,5 @@ if __name__ == "__main__":
     if len(sys.argv) != 4:
         print("Usage: <username> <password> <database>")
         sys.exit(1)
-    username, password, db_name = sy.argv[1:]
+    username, password, db_name = sys.argv[1:]
     cities_check(username, db_name, db_name)
-
-

@@ -19,8 +19,7 @@ def start_with_N(username, password, database):
                 passwd=password,
                 db=database)
         cur = db.cursor()
-        cur.execute("SELECT id, name FROM states WHERE id IN(SELECT MIN(id)\
-                     FROM states GROUP BY name) AND name LIKE 'N%'\
+        cur.execute("SELECT * FROM states WHERE name LIKE 'N%'\
                      ORDER BY id")
         res = cur.fetchall()
         for state in res:
