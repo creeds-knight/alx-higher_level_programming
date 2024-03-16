@@ -16,7 +16,10 @@ def first_state(username, password, db_name):
         Session = sessionmaker(bind=engine)
         session = Session()
         first = session.query(State).order_by(State.id)[0]
-        print(f"{first.id}: {first.name}")
+        if first:
+            print(f"{first.id}: {first.name}")
+        else:
+            print("Nothing")
 
         session.close()
     except SQLAlchemyError as e:
