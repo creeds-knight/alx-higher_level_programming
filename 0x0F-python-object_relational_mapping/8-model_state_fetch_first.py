@@ -15,8 +15,7 @@ def first_state(username, password, db_name):
             username, password, "3306", db_name))
         Session = sessionmaker(bind=engine)
         session = Session()
-        states = session.query(State).order_by(State.id).all()
-        first = states[0]
+        first = session.query(State).order_by(State.id)[0]
         print(f"{first.id}: {first.name}")
 
         session.close()
