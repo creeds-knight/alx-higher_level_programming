@@ -16,8 +16,8 @@ def name_passed(username, password, db_name, name):
         Session = sessionmaker(bind=engine)
         session = Session()
         states = session.query(State).order_by(State.id).filter(
-                State.name == name)
-        if states:
+                State.name == name).all()
+        if len(states) > 0:
             for state in states:
                 print(f"{state.id}")
         else:
