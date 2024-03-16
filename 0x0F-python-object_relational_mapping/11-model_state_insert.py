@@ -16,6 +16,7 @@ def add_state(username, password, db_name):
         Session = sessionmaker(bind=engine)
         session = Session()
         new_state = State(name="Louisiana")
+        session.add(new_state)
         session.commit()
         states = session.query(State).order_by(State.id).filter(
                 State.name == "Louisiana")
