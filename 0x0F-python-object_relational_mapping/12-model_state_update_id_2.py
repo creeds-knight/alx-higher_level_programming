@@ -18,7 +18,7 @@ def change_name(username, password, db_name):
         states = session.query(State).order_by(State.id).filter(
                 State.id == 2)
         for state in states:
-              state.name = "New Mexico"
+            state.name = "New Mexico"
         session.commit()
         session.close()
     except SQLAlchemyError as e:
