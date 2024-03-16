@@ -17,8 +17,11 @@ def name_passed(username, password, db_name, name):
         session = Session()
         states = session.query(State).order_by(State.id).filter(
                 State.name == name)
-        for state in states:
-            print(f"{state.id}")
+        if states:
+            for state in states:
+                print(f"{state.id}")
+        else:
+            print("Not found")
 
         session.close()
     except SQLAlchemyError as e:
