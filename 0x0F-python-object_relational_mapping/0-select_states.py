@@ -12,8 +12,7 @@ def states(username, password, db_name):
     db = MySQLdb.connect(host="localhost", port=3306, user=username,
                          passwd=password, db=db_name, charset="utf8")
     cur = db.cursor()
-    cur.execute("SELECT id, name FROM states WHERE id IN(SELECT MIN(id)\
-                 FROM states GROUP BY name) ORDER BY id ASC")
+    cur.execute("SELECT * FROM states ORDER BY id ASC")
     states = cur.fetchall()
     for state in states:
         print(state)
