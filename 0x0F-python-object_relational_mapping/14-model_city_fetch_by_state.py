@@ -16,8 +16,8 @@ def do_join(username, password, db_name):
             username, password, "3306", db_name))
         Session = sessionmaker(bind=engine)
         session = Session()
-        cit_st = session.query(City, State).
-        join(State, City.state_id == State.id).order_by(City.id).all()
+        cit_st = session.query(City, State).\
+            join(State, City.state_id == State.id).order_by(City.id).all()
         for city, state in cit_st:
             print(f"{state.name}: ({city.id}) {city.name}")
 
