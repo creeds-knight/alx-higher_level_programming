@@ -20,7 +20,7 @@ def start_with_N(username, password, database):
                 db=database)
         cur = db.cursor()
         cur.execute("SELECT * FROM states WHERE name LIKE 'N%'\
-                     ORDER BY id")
+                     ORDER BY id ASC")
         res = cur.fetchall()
         for state in res:
             print(state)
