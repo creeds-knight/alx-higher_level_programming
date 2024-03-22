@@ -21,7 +21,7 @@ def add_state(username, password, db_name):
         states = session.query(State).order_by(State.id).filter(
                 State.name == "Louisiana")
         for state in states:
-              print(f"{state.id}")
+            print(f"{state.id}")
 
         session.close()
     except SQLAlchemyError as e:

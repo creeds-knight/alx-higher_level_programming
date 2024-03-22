@@ -7,6 +7,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import SQLAlchemyError
 from relationship_city import City
 import sys
+from model_base import Base
 
 
 
@@ -15,6 +16,7 @@ def relationship_add(username, password, db_name):
     try:
         engine = create_engine('mysql+mysqldb://{}:{}@localhost:{}/{}'.format(
             username, password, "3306", db_name))
+        Base.metadata.create_all(engine)
         Session = sessionmaker(bind=engine)
         session = Session()
         new_city = City(name="San Francisco")

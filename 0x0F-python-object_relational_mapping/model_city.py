@@ -6,6 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, ForeignKey
 Base = declarative_base()
 
+
 class City(Base):
     """ A class City to map to the table name cities"""
     __tablename__ = "cities"

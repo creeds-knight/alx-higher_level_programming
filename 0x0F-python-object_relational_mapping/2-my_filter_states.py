@@ -19,7 +19,8 @@ def state_check(username, password, database, state):
                 passwd=password,
                 db=database)
         cur = db.cursor()
-        cur.execute("SELECT * FROM states WHERE name = %s ORDER BY id ASC")
+        cur.execute("SELECT * FROM states WHERE name = %s ORDER BY id ASC",
+                    (state,))
         res = cur.fetchall()
         for state in res:
             print(state)
