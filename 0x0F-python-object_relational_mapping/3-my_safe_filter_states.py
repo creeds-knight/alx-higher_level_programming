@@ -20,9 +20,8 @@ def state_check(username, password, database, state):
                 db=database)
         cur = db.cursor()
         state_escaped = db.escape_string(state)
-        querry = "SELECT id, name FROM states WHERE id IN (SELECT MIN(id)\
-                    FROM states GROUP BY name) AND name = %s\
-                    ORDER BY id"
+        querry = "SELECT * FROM states  WHERE name = _utf8mb4 %s COLLATE\
+                  utf8mb4_0900_as_cs ORDER BY id ASC"
         cur.execute(querry, (state, ))
         res = cur.fetchall()
         for state in res:
