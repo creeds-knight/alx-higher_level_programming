@@ -9,7 +9,7 @@ def get_req(url):
     """ sends a url request and displays the body"""
     try:
         with urllib.request.urlopen(url) as response:
-            data = response.read().decode('utf-8')
+            data = response.read()
             print(data)
     except urllib.error.HTTPError as e:
         print("Error code: ", e.code)
