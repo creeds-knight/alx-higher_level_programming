@@ -14,7 +14,7 @@ def interview(repo_name, ownername):
 
         for commit in commits:
             sha = commit['sha']
-            author_name= commit['commit']['author']['name']
+            author_name = commit['commit']['author']['name']
             print(f'{sha}: {author_name}')
 
     except requests.exceptions.RequestException as e:
