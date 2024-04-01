@@ -1,4 +1,4 @@
-#!/bin/usr/python3
+#!/usr/bin/python3
 """a script takes a letter as input and sends a POST request to http://0.0.0.0:5000/search_user
 with the letter as a parameter 'q'. It processes the response and displays the result accordingly.
 """
