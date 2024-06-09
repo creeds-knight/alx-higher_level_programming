@@ -1,43 +1,36 @@
 #!/usr/bin/python3
-""" A module that adds a state based on a relationship
-"""
-from relationship_state import State
+"""Creates the State 'Carlifornia' with the City 'San Fransisco'."""
 from relationship_city import City
-from sqlalchemy import create_engine
+from relationship_state import Base, State
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy import create_engine
+from sqlalchemy.engine.url import URL
 import sys
-from model_state import Base
 
 
+if __name__ == '__main__':
 
-def relationship_add(username, password, db_name):
-    """ A function add state and city"""
-    try:
-        engine = create_engine('mysql+mysqldb://{}:{}@localhost:{}/{}'.format(
-            username, password, "3306", db_name))
-        Session = sessionmaker(bind=engine)
-        session = Session()
+    if len(sys.argv) < 3:
+        exit()
 
-        Base.metadata.create_all(engine)
+    url = URL(
+        drivername='mysql',
+        username=sys.argv[1],
+        password=sys.argv[2],
+        host='localhost',
+        port=3306,
+        database=sys.argv[3],
+        query={})
 
-        new_state = State(name="California")
-        new_city = City(name="San Francisco", state=new_state)
+    engine = create_engine(url)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    # emit DDL to the database 'CREATE IF NOT EXISTS.. etc'
+    Base.metadata.create_all(engine)
 
-        session.add_all([new_state, new_city])
+    new_state = State(name='California')
+    new_city = City(name='San Francisco', state=new_state)
 
-        session.commit()
+    session.add_all([new_state, new_city])
 
-        session.close()
-    except SQLAlchemyError as e:
-        print("Error:", e)
-        sys.exit(1)
-
-
-if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        print("Usage: <username> <password> <database name>")
-        sys.exit(1)
-
-    username, password, db_name = sys.argv[1:]
-    relationship_add(username, password, db_name)
+    session.commit()

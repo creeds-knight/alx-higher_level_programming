@@ -1,17 +1,16 @@
 #!/usr/bin/python3
-"""
-    A module containing the class City and Instance of Base
-"""
-from sqlalchemy.ext.declarative import declarative_base
+"""ss definition of a city with relationships."""
 from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
-from relationship_state import State
-Base = declarative_base()
+from relationship_state import Base
+
 
 class City(Base):
-    """ A class City to map to the table name cities"""
-    __tablename__ = "cities"
+    """Represents a city object."""
 
-    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
+    __tablename__ = 'cities'
+
+    id = Column(Integer, autoincrement=True, unique=True, nullable=False,
+                primary_key=True)
     name = Column(String(128), nullable=False)
-    state_id = Column(Integer, ForeignKey('states.id'), nullable=True)
+    state_id = Column(Integer, ForeignKey('states.id'), nullable=False)
+
