@@ -1,38 +1,38 @@
-#!/usr/bin/python3
-"""link class to table in database
-"""
 
-import sys
-from sqlalchemy import create_engine
-from model_base import Base
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm import joinedload
+#!/usr/bin/python3
+"""Lists all State objects, and corresponding City objects."""
 from relationship_city import City
 from relationship_state import State
+from sqlalchemy import create_engine, asc
+from sqlalchemy.engine.url import URL
+from sqlalchemy.orm import sessionmaker
+import sys
 
-if __name__ == "__main__":
-    av = sys.argv
 
-    user = av[1]
-    passwd = av[2]
-    db = av[3]
+if __name__ == '__main__':
 
-    engine = create_engine(
-        'mysql+mysqldb://{}:{}@localhost/{}'.format(
-            user, passwd, db), pool_pre_ping=True)
+    if len(sys.argv) < 3:
+        exit()
 
-    Base.metadata.create_all(engine)
+    url = URL(
+        drivername='mysql',
+        username=sys.argv[1],
+        password=sys.argv[2],
+        host='localhost',
+        port=3306,
+        database=sys.argv[3],
+        query={})
 
+    engine = create_engine(url)
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    states = session.query(State).options(
-            joinedload(State.cities)).order_by(State.id)
+    query = session.query(State)
+    states = query.order_by(asc(State.id)).all()
 
-    for state in states:
-        print("{}: {}".format(state.id, state.name))
+    for state_obj in states:
+        print(f"{state_obj.id}: {state_obj.name}")
+        for city_obj in state_obj.cities:
+            print(f"    {city_obj.id}: {city_obj.name}")
 
-        for city in state.cities:
-            print("\t{}: {}".format(city.id, city.name))
-
-        session.close()
+    session.close()
