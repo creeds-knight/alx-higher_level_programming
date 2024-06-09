@@ -1,33 +1,30 @@
 #!/usr/bin/python3
-import sys
-from sqlalchemy import create_engine
+"""Lists all City objects from the database."""
+from sqlalchemy import create_engine, asc
+from sqlalchemy.engine.url import URL
 from sqlalchemy.orm import sessionmaker
-from model_state import State, Base
-from model_city import City
+from relationship_city import City
+import sys
 
-def list_cities(username, password, database_name):
-    # Create a database connection
-    engine = create_engine(f'mysql+mysqldb://{username}:{password}@localhost:3306/{database_name}')
 
-    # Create a session
+if __name__ == "__main__":
+
+    url = URL(
+        drivername='mysql',
+        username=sys.argv[1],
+        password=sys.argv[2],
+        host='localhost',
+        port=3306,
+        database=sys.argv[3],
+        query={})
+
+    engine = create_engine(url)
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # Query the database to retrieve City objects
-    cities = session.query(City).join(State).order_by(City.id).all()
+    query = session.query(City).order_by(asc(City.id)).all()
 
-    # Print the results
-    for city in cities:
-        print(f'{city.id}: {city.name} ({city.state.name})')
+    for city_obj in query:
+        print(f"{city_obj.id}: {city_obj.name} -> {city_obj.state.name}")
 
-    # Close the session
     session.close()
-
-if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        print("Usage: python script.py <username> <password> <database_name>")
-        sys.exit(1)
-
-    username, password, database_name = sys.argv[1], sys.argv[2], sys.argv[3]
-    list_cities(username, password, database_name)
-
