@@ -2,12 +2,12 @@
 """ A module that adds a state based on a relationship
 """
 from relationship_state import State
+from relationship_city import City
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import SQLAlchemyError
-from relationship_city import City
 import sys
-from model_base import Base
+from model_state import Base
 
 
 
@@ -16,13 +16,16 @@ def relationship_add(username, password, db_name):
     try:
         engine = create_engine('mysql+mysqldb://{}:{}@localhost:{}/{}'.format(
             username, password, "3306", db_name))
-        Base.metadata.create_all(engine)
         Session = sessionmaker(bind=engine)
         session = Session()
-        new_city = City(name="San Francisco")
+
+        Base.metadata.create_all(engine)
+
         new_state = State(name="California")
-        new_state.cities.append(new_city)
-        session.add(new_state)
+        new_city = City(name="San Francisco", state=new_state)
+
+        session.add_all([new_state, new_city])
+
         session.commit()
 
         session.close()
